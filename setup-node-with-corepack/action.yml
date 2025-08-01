@@ -1,0 +1,29 @@
+name: "Setup Node.js, Corepack, Cache and Package Manager"
+description: "Enable Corepack, setup Node.js With cache, package manager, and install dependencies"
+
+inputs:
+  node-version:
+    description: "Node.js version to use"
+    required: false
+    default: "22"
+  package-manager:
+    description: "Package manager to use (default: pnpm)"
+    required: false
+    default: "pnpm"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Enable Corepack
+      run: corepack enable
+      shell: bash
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ inputs.package-manager }}
+
+    - name: Install dependencies
+      run: ${{ inputs.package-manager }} install
+      shell: bash
