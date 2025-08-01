@@ -3,7 +3,7 @@ description: "Enable Corepack, setup Node.js With cache, package manager, and in
 
 inputs:
   node-version:
-    description: "Node.js version to use"
+    description: "Node.js version to use (default: 22)"
     required: false
     default: "22"
   package-manager:
